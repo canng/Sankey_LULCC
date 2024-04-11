@@ -88,10 +88,10 @@ fileInfo = data.frame(
 data = create_data(fileInfo)
 
 # Calculate Area
-data$linkInfo$Area_km = d$linkInfo$value * 900 / 1000000
+data$linkInfo$Area_km = data$linkInfo$value * 900 / 1000000
 
 # Plot 
-sankeyNetwork(Links = data$linkInfo, Nodes = data$nodeInfo,
+p= sankeyNetwork(Links = data$linkInfo, Nodes = data$nodeInfo,
               Source = "source",
               Target = "target",
               Value = "Area_km",
@@ -105,7 +105,8 @@ sankeyNetwork(Links = data$linkInfo, Nodes = data$nodeInfo,
               units = 'Km2',
               colourScale = paste0('d3.scaleOrdinal().range([',data$groupColor,'])')
               )
+p
 
-#saveNetwork(p, "./sankey_plot.html")
+saveNetwork(p, "./sankey_plot.html")
 
 
